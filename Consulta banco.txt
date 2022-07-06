@@ -1,0 +1,12 @@
+select * from ton_transactions where status = 'PROCESSING'
+
+select a.id, a.email
+From ton_users a inner join ton_transactions b
+on b.user_id = a.id and b.status = 'PROCESSING'
+
+
+\copy
+(select a.id, a.email
+From ton_users a inner join ton_transactions b
+on b.user_id = a.id and b.status = 'PROCESSING')
+to 'C:/temp/usuarios_impactdos.csv' with DELIMITER AS ';' csv header
